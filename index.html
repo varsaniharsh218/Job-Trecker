@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>Job Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>My Job Timer</h1>
+      <p>Track your work, your time.</p>
+    </div>
+    <div id="todayDate"></div>
+  </header>
+
+  <main class="container">
+    <section class="card timer-card">
+      <p class="muted">CURRENT SESSION</p>
+      <h2 id="timerMode">Regular Work</h2>
+      <div id="timerDisplay" class="timer">00:00:00</div>
+      <p id="timerStatus" class="status">Not started</p>
+
+      <div class="field">
+        <label for="workMode">Timer Mode</label>
+        <select id="workMode">
+          <option value="regular">Regular Work (Max 11 hours)</option>
+          <option value="overtime">Overtime</option>
+        </select>
+      </div>
+
+      <div class="field" id="overtimeSettings" hidden>
+        <label for="overtimeHours">Overtime duration (hours)</label>
+        <input id="overtimeHours" type="number"
+          min="0.01" max="24" step="0.25" value="1">
+      </div>
+
+      <div class="actions">
+        <button id="startBtn" class="btn btn-start">Start Work</button>
+        <button id="stopBtn" class="btn btn-stop" disabled>
+          Stop Work
+        </button>
+      </div>
+
+      <p class="hint">
+        Regular work stops after 11 hours. Overtime stops at
+        your selected duration.
+      </p>
+    </section>
+
+    <section class="stats">
+      <article class="card stat">
+        <p>Today's Regular</p>
+        <h3 id="todayRegular">0h 0m</h3>
+      </article>
+      <article class="card stat">
+        <p>Today's Overtime</p>
+        <h3 id="todayOvertime">0h 0m</h3>
+      </article>
+      <article class="card stat">
+        <p>Today's Total</p>
+        <h3 id="todayTotal">0h 0m</h3>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <h2>Work History</h2>
+          <p class="muted">Your daily work records</p>
+        </div>
+        <button id="exportBtn" class="btn btn-export">
+          Export CSV
+        </button>
+      </div>
+
+      <div class="report-filters">
+        <label for="reportType">Report</label>
+        <select id="reportType">
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+          <option value="all">All Records</option>
+        </select>
+      </div>
+
+      <div id="reportSummary" class="report-summary"></div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+
+    <p class="footer-note">
+      Your work records are stored in this browser on this device.
+    </p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
